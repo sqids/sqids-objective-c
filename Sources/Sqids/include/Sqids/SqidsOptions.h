@@ -1,0 +1,1 @@
+../../SqidsOptions.h
