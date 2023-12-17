@@ -220,19 +220,19 @@ NSErrorDomain const SqidsErrorDomain = @"SqidsErrorDomain";
 }
 
 - (BOOL)isBlockedId:(NSString *)id_ {
-    id_ = id_.lowercaseString;
+    NSString *lowercasedId = id_.lowercaseString;
 
     for (NSString *word in self.blocklist) {
-        if (word.length <= id_.length) {
-            if (id_.length <= 3 || word.length <= 3) {
-                if ([id_ isEqualToString:word]) {
+        if (word.length <= lowercasedId.length) {
+            if (lowercasedId.length <= 3 || word.length <= 3) {
+                if ([lowercasedId isEqualToString:word]) {
                     return YES;
                 }
             } else if ([word rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location != NSNotFound) {
-                if ([id_ hasPrefix:word] || [id_ hasSuffix:word]) {
+                if ([lowercasedId hasPrefix:word] || [lowercasedId hasSuffix:word]) {
                     return YES;
                 }
-            } else if ([id_ containsString:word]) {
+            } else if ([lowercasedId containsString:word]) {
                 return YES;
             }
         }
